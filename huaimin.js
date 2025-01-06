@@ -17,41 +17,42 @@
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    // 中文搜索问题列表
-    const searchQueries = [
-        "如何提高编程能力？",
-        "什么是人工智能？",
-        "如何学习数据结构与算法？",
-        "2024年有哪些流行的编程语言？",
-        "如何进行时间管理？",
-        "推荐一些好看的书籍",
-        "如何提高英语口语能力？",
-        "2024年有哪些值得关注的科技趋势？",
-        "如何选择适合自己的职业？",
-        "如何更有效地进行自我学习？",
-        "如何提高学习效率？",
-        "有哪些适合自学的编程语言？",
-        "2024年有哪些热门的科技创业公司？",
-        "如何做到高效的团队协作？",
-        "有哪些适合大学生的兼职工作？",
-        "如何规划个人职业发展？",
-        "如何提高心理抗压能力？",
-        "哪些网站适合学习编程？",
-        "如何进行有效的时间管理？",
-        "如何培养创新思维？",
-        "哪些工具可以提高工作效率？",
-        "如何提高自己的写作水平？",
-        "如何通过阅读提升自己的能力？",
-        "如何利用网络资源进行自我学习？",
-        "2024年有哪些值得关注的科技产品？",
-        "如何应对职场中的压力与挑战？",
-        "如何提高面试技巧？"
+    // 名词列表
+    const nouns = [
+        "编程", "人工智能", "时间管理", "数据结构", "算法",
+        "团队协作", "科技产品", "创业", "创新思维", "写作能力",
+        "语言学习", "自我管理", "健康生活", "投资理财", "心理建设",
+        "区块链技术", "未来技术", "职业规划", "科学研究", "教育资源",
+        "网络安全", "物联网", "5G技术", "大数据", "云计算",
+        "机器人技术", "虚拟现实", "增强现实", "绿色能源", "全球变暖"
     ];
 
-    // 随机获取搜索问题
-    function getRandomQuery() {
-        const randomIndex = Math.floor(Math.random() * searchQueries.length);
-        return searchQueries[randomIndex];
+    // 动词列表
+    const verbs = [
+        "提高", "学习", "掌握", "选择", "优化",
+        "规划", "利用", "探索", "分析", "改进",
+        "了解", "实现", "完成", "提升", "创建",
+        "设计", "实施", "执行", "观察", "适应",
+        "开发", "诊断", "解决", "预防", "创新"
+    ];
+
+    // 形容词列表
+    const adjectives = [
+        "高效的", "实用的", "有趣的", "先进的", "快速的",
+        "有效的", "创新的", "专业的", "重要的", "灵活的",
+        "全面的", "可靠的", "智能的", "优质的", "经济的",
+        "可持续的", "多样化的", "精确的", "动态的", "强大的",
+        "友好的", "环保的", "稳定的", "易用的", "个性化的"
+    ];
+
+    // 组合问题生成器
+    function generateRandomQuery() {
+        const noun = nouns[Math.floor(Math.random() * nouns.length)];
+        const verb = verbs[Math.floor(Math.random() * verbs.length)];
+        const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+
+        // 生成类似“如何提高编程能力？”的问题
+        return `如何${verb}${adjective}${noun}？`;
     }
 
     async function executeSearch() {
@@ -65,9 +66,9 @@
         const searchButton = document.querySelector("#sb_form_go");
 
         if (input && searchButton) {
-            // 第三步：随机选择一个搜索问题
-            const searchQuery = getRandomQuery();
-            console.log("随机选择的搜索关键词: " + searchQuery);
+            // 第三步：随机生成一个搜索问题
+            const searchQuery = generateRandomQuery();
+            console.log("生成的搜索关键词: " + searchQuery);
 
             await delay(2000); // 添加 2 秒延迟
 

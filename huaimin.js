@@ -17,24 +17,26 @@
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    // 生成随机字符串的函数
-    function generateRandomString(length) {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; // 字母和数字
-        let result = '';
-        const charactersLength = characters.length;
+    // 中文搜索问题列表
+    const searchQueries = [
+        "如何提高编程能力？",
+        "什么是人工智能？",
+        "如何学习数据结构与算法？",
+        "2024年有哪些流行的编程语言？",
+        "如何进行时间管理？",
+        "推荐一些好看的书籍",
+        "如何提高英语口语能力？",
+        "2024年有哪些值得关注的科技趋势？",
+        "如何选择适合自己的职业？",
+        "如何更有效地进行自我学习？"
+    ];
 
-        // 循环生成指定长度的随机字符串
-        for (let i = 0; i < length; i++) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-
-        return result;
-    }
+    let currentQueryIndex = 0; // 当前搜索问题的索引
 
     async function executeSearch() {
-        // 第一步：等待 10 秒后开始执行搜索
-        console.log("等待 10 秒...");
-        await delay(10000);
+        // 第一步：等待 15 秒后开始执行搜索
+        console.log("等待 15 秒...");
+        await delay(15000);
 
         // 第二步：获取输入框和按钮
         console.log("查找输入框和搜索按钮...");
@@ -42,9 +44,11 @@
         const searchButton = document.querySelector("#sb_form_go");
 
         if (input && searchButton) {
-            // 第三步：生成随机查询字符串
-            console.log("生成随机搜索关键词...");
-            const searchQuery = generateRandomString(10);
+            // 第三步：选择当前搜索问题
+            const searchQuery = searchQueries[currentQueryIndex];
+            console.log("当前搜索关键词: " + searchQuery);
+            currentQueryIndex = (currentQueryIndex + 1) % searchQueries.length; // 循环使用搜索问题
+
             await delay(2000); // 添加 2 秒延迟
 
             // 第四步：设置输入框值

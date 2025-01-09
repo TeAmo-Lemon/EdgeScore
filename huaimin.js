@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         循环搜索脚本 - 随机搜索问题
 // @namespace    http://tampermonkey.net/
-// @version      v0.2
+// @version      v0.3
 // @description  随机从预定义的问题列表中选择问题进行搜索，搜索后清空内容并刷新页面
 // @author       Huaimin
 // @match        https://*.bing.com/*

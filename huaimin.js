@@ -12,9 +12,10 @@
 (function () {
     'use strict';
 
-    // 通用延迟函数
-    function delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+    // 通用延迟函数，带随机延迟
+    function delay(min, max) {
+        const randomDelay = Math.floor(Math.random() * (max - min + 1)) + min;
+        return new Promise(resolve => setTimeout(resolve, randomDelay));
     }
 
     // 名词列表
@@ -56,9 +57,10 @@
     }
 
     async function executeSearch() {
-        // 第一步：等待 15 秒后开始执行搜索
-        console.log("等待 15 秒...");
-        await delay(15000);
+        // 第一步：等待随机时间后开始执行搜索
+        const waitTime = Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000;  // 随机等待时间 10-20 秒
+        console.log(`等待 ${waitTime / 1000} 秒...`);
+        await delay(waitTime, waitTime);
 
         // 第二步：获取输入框和按钮
         console.log("查找输入框和搜索按钮...");
@@ -70,20 +72,22 @@
             const searchQuery = generateRandomQuery();
             console.log("生成的搜索关键词: " + searchQuery);
 
-            await delay(2000); // 添加 2 秒延迟
+            const inputDelay = Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000;  // 随机延迟 1-3 秒
+            await delay(inputDelay, inputDelay);
 
             // 第四步：设置输入框值
             console.log("设置输入框值...");
             input.value = searchQuery;
-            await delay(2000); // 添加 2 秒延迟
+            await delay(inputDelay, inputDelay);  // 随机延迟 1-3 秒
 
             // 第五步：点击搜索按钮
             console.log("点击搜索按钮...");
             searchButton.click();
 
             // 第六步：等待搜索结果加载完成
-            console.log("等待搜索结果加载...");
-            await delay(5000); // 等待 5 秒确保搜索完成
+            const resultWaitTime = Math.floor(Math.random() * (7000 - 5000 + 1)) + 5000;  // 随机等待 5-7 秒
+            console.log(`等待搜索结果加载 (${resultWaitTime / 1000} 秒)...`);
+            await delay(resultWaitTime, resultWaitTime);
 
             // 第七步：清空输入框内容
             console.log("清空输入框内容...");
